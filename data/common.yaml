@@ -1,0 +1,3 @@
+---
+crowdsec::required_packages_manage: true
+crowdsec::required_packages_ensure: present

@@ -1,0 +1,8 @@
+crowdsec::required_packages:
+  - apt-transport-https
+  - curl
+  - debian-archive-keyring
+  - gnupg
+
+crowdsec::gpg_key_url: 'https://packagecloud.io/crowdsec/crowdsec/gpgkey'
+crowdsec::config_url: 'https://packagecloud.io/install/repositories/crowdsec/crowdsec/config_file.list?os=${os}&dist=${dist}&source=script'
