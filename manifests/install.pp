@@ -8,7 +8,7 @@ class crowdsec::install (
 ) {
 # install package requirements
   if $crowdsec::manage_packages == true {
-    $crowdsec::required_packages.each |$required_package | {
+    $crowdsec::required_packages.each |$crowdsec::required_package | {
       ensure_packages($crowdsec::required_package, { ensure => $crowdsec::required_packages_ensure })
     }
   }
