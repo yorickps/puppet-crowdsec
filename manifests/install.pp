@@ -15,11 +15,15 @@ class crowdsec::install (
   
   case $facts[osfamily] {
     'Debian': {
-      apt::key { 'packagecloud_crowdsec':
-        id      => '6A89E3C2303A901A889971D3376ED5326E93CD0C',
-        server  => 'pgp.mit.edu',
-      } 
+      create_resources(apt::key, $crowdsec::apt_key)
+#      apt::key { 'packagecloud_crowdsec':
+#        id      => '6A89E3C2303A901A889971D3376ED5326E93CD0C',
+#        server  => 'pgp.mit.edu',
+#      } 
     }
-    'RedHat': {}
+    'RedHat': {
+      create_resources(archive, $crowdsec::yum_gpg_archive)
+      ~> create_resources(yum::gpgkey, $crowdsec::yum_gpgkey)
+      }
   }
 }
