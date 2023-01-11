@@ -1,4 +1,7 @@
 ---
+crowdsec::required_packages:
+  - yum-utils
+
 crowdsec::yum_gpg_archive:
   ensure: present 
   source: https://packagecloud.io/crowdsec/crowdsec/gpgkey
