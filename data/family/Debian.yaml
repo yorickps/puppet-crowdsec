@@ -1,3 +1,7 @@
+crowdsec::apt_key:
+  id: 6A89E3C2303A901A889971D3376ED5326E93CD0C
+  server: pgp.mit.edu
+
 crowdsec::required_packages:
   - apt-transport-https
   - curl
