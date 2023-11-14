@@ -1,6 +1,6 @@
-# A description of what this class does
+# Install crowdsec
 #
-# @summary A short summary of the purpose of this class
+# @summary Install crowdsec repo, dependecies and the main package
 #
 # @example
 #   include crowdsec::install
@@ -13,26 +13,24 @@ class crowdsec::install (
     }
   }
 
-  case $facts[osfamily] {
-    'Debian': {
-      include apt
+  # case $facts[osfamily] {
+  #   'Debian': {
+  #     include apt
 
-      create_resources(apt::key, $crowdsec::apt_key)
+  #     create_resources(apt::key, $crowdsec::apt_key)
 
-      apt::source { 'crowdsec':}
-    }
-    'RedHat': {
-      create_resources(archive, $crowdsec::yum_gpg_archive)
-      ~> create_resources(yum::gpgkey, $crowdsec::yum_gpgkey)
+  #     apt::source { 'crowdsec':}
+  #   }
+  #  'RedHat': {
+  create_resources(archive, $crowdsec::yum_gpg_archive)
+  ~> create_resources(yum::gpgkey, $crowdsec::yum_gpgkey)
 
-      create_resources(yum::repo, $crowdsec::yumrepo)
-    }
-  }
-
-
-
-  package { 'crowdsec':
-    ensure => $crowdsec::package_ensure,
-    install_options => '--enablerepo=crowdsec',
+  create_resources(yum::repo, $crowdsec::yumrepo)
+# }
+  #}
+  -> package { 'crowdsec':
+    ensure          => $crowdsec::package_ensure,
+    #install_options => '--enablerepo=crowdsec',
+    #require         => Yum::Repo['crowdsec'],
   }
 }
