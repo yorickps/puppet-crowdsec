@@ -11,3 +11,10 @@ crowdsec::yum_gpgkey:
   /etc/pki/rpm-gpg/RPM-GPG-KEY-CrowdSec:
     #source: "puppet:///${module_name}/RPM-GPG-KEY-CrowdSec"
     source: /tmp/RPM-GPG-KEY-CrowdSec
+
+crowdsec::yum_repo:
+  crowdsec:
+    enabled: true
+    baseurl:
+    descr:
+    gpg:

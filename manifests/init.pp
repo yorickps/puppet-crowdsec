@@ -2,11 +2,21 @@
 #
 # @summary This module manages CrowdSec
 #
-# @example
-#   include crowdsec
-class crowdsec(
+# @param installs
+#   
+# @param install_ensure
+#   Install ensure
+# @param package_ensure
+#   Whether or not to install main package
+# @param required_packages
+#   Required packages to install
+class crowdsec (
   Array[String] $installs,
   $install_ensure,
+  $package_ensure,
+  Boolean $manage_packages,
+  Array[String] $required_packages,
+  E$required_packages_ensure,
 ) {
   contain crowdsec::install
   contain crowdsec::config
