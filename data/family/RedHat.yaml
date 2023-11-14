@@ -15,6 +15,12 @@ crowdsec::yum_gpgkey:
 crowdsec::yum_repo:
   crowdsec:
     enabled: true
-    baseurl:
-    descr:
-    gpg:
+    baseurl: "https://packagecloud.io/crowdsec/crowdsec/el/${facts.os.release.major}/$basearch"
+    descr: CrowdSec
+    enabled: 1
+    gpgkey: https://packagecloud.io/crowdsec/crowdsec/gpgkey
+    gpgcheck: 1
+    repo_gpgcheck: 0
+    sslverify: 1
+    sslcacert: /etc/pki/tls/certs/ca-bundle.crt
+    metadata_expire: 300
