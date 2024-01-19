@@ -22,15 +22,38 @@ class crowdsec::install (
   #     apt::source { 'crowdsec':}
   #   }
   #  'RedHat': {
-  create_resources(archive, $crowdsec::yum_gpg_archive)
-  ~> create_resources(yum::gpgkey, $crowdsec::yum_gpgkey)
 
-  create_resources(yum::repo, $crowdsec::yumrepo)
-# }
-  #}
-  -> package { 'crowdsec':
-    ensure          => $crowdsec::package_ensure,
-    #install_options => '--enablerepo=crowdsec',
-    #require         => Yum::Repo['crowdsec'],
+  archive { 'gpg-key':
+    ensure  => present,
+    source  => 'https://packagecloud.io/crowdsec/crowdsec/gpgkey',
+    creates => '/tmp/RPM-GPG-KEY-CrowdSec',
   }
+
+  yum::gpgkey { '/etc/pki/rpm-gpg/RPM-GPG-KEY-CrowdSec':
+    ensure  => present,
+    source  => '/tmp/RPM-GPG-KEY-CrowdSec',
+    require => Archive['gpg-key']
+  }
+
+  yumrepo { 'crowdsec':
+    enabled         => true,
+    baseurl         => "https://packagecloud.io/crowdsec/crowdsec/el/${facts.os.release.major}/$basearch",
+    descr           => CrowdSec,
+    gpgkey          => 'https://packagecloud.io/crowdsec/crowdsec/gpgkey',
+    gpgcheck        => 1,
+    repo_gpgcheck   => 0,
+    sslverify       => 1,
+    sslcacert       => /etc/pki/tls/certs/ca-bundle.crt,
+    metadata_expire => 300,
+    }
+
+  # }
+  #}
+  package { 'crowdsec':
+    ensure          => $crowdsec::package_ensure,
+    install_options => '--enablerepo=crowdsec',
+    require         => Yum::Repo['crowdsec'],
+  }
+    default: 'OS family not supported'
+    }
 }
