@@ -21,7 +21,7 @@
     {
       "name": "puppetlabs/stdlib",
       "version_requirement": ">= 7.0.0 < 10.0.0"
-    },
+    }
   ],
   "tags": [
     "crowdsec",
