@@ -22,6 +22,8 @@ class crowdsec::install (
   #     apt::source { 'crowdsec':}
   #   }
   #  'RedHat': {
+  include yum
+  include archive
 
   archive { 'gpg-key':
     ensure  => present,
@@ -54,6 +56,6 @@ class crowdsec::install (
     install_options => '--enablerepo=crowdsec',
     require         => Yum::Repo['crowdsec'],
   }
-    default: 'OS family not supported'
-    }
+  #  default: 'OS family not supported'
+  #  }
 }

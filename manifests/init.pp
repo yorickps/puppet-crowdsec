@@ -16,7 +16,7 @@ class crowdsec (
   $package_ensure,
   Boolean $manage_packages,
   Array[String] $required_packages,
-  E$required_packages_ensure,
+  $required_packages_ensure,
 ) {
   contain crowdsec::install
   contain crowdsec::config
