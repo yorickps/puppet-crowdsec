@@ -1,0 +1,24 @@
+<%- | crowdsec_whitelist_ip, crowdsec_whitelist_cidr | -%>
+name: crowdsecurity/mywhitelists
+description: "Whitelist events from my ip addresses"
+whitelist:
+  reason: "my ip ranges"
+  ip: <%= crowdsec_whitelist_ip.to_yaml %>
+  cidr: <%= crowdsec_whitelist_cidr.to_yaml %>
+<%- end -%>
+
+
+name: crowdsecurity/whitelists
+description: "Whitelist events from private ipv4 addresses"
+whitelist:
+  reason: "private ipv4/ipv6 ip/ranges"
+  ip: 
+    - "127.0.0.1"
+    - "::1"
+  cidr:
+    - "192.168.0.0/16"
+    - "10.0.0.0/8"
+    - "172.16.0.0/12"
+  # expression:
+  #   - "'foo.com' in evt.Meta.source_ip.reverse" 
+
