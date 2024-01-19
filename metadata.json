@@ -17,7 +17,12 @@
     {
       "name": "puppet/yum",
       "version_requirement": ">= 6.0.0 < 8.0.0"
-    }
+    },
+  ],
+  "tags": [
+    "crowdsec",
+    "security",
+    "blocklist"    
   ],
   "operatingsystem_support": [
     {
