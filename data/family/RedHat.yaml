@@ -18,7 +18,6 @@ crowdsec::yum_repo:
     enabled: true
     baseurl: "https://packagecloud.io/crowdsec/crowdsec/el/${facts.os.release.major}/$basearch"
     descr: CrowdSec
-    enabled: 1
     gpgkey: https://packagecloud.io/crowdsec/crowdsec/gpgkey
     gpgcheck: 1
     repo_gpgcheck: 0
