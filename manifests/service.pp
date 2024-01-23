@@ -1,8 +1,17 @@
-# A description of what this class does
+# @summary
+#   This class handles the crowdsec service.
 #
-# @summary A short summary of the purpose of this class
+# @api private
 #
-# @example
-#   include crowdsec::service
 class crowdsec::service {
+  if $crowdsec::service_manage == true {
+    service { 'crowdsec':
+      ensure     => $crowdsec::service_ensure,
+      enable     => $crowdsec::service_enable,
+      name       => $crowdsec::service_name,
+      provider   => $crowdsec::service_provider,
+      hasstatus  => $crowdsec::service_hasstatus,
+      hasrestart => $crowdsec::service_hasrestart,
+    }
+  }
 }
