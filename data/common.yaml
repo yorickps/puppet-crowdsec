@@ -12,3 +12,5 @@ crowdsec::db_config:
   db_name: crowdsec
   host: db_host
   port: db_port
+
+crowdsec::repo_gpgkey:
