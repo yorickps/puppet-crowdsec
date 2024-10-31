@@ -24,6 +24,8 @@ class crowdsec (
   Optional[String] $service_provider,
   Boolean $service_hasstatus,
   Boolean $service_hasrestart,
+  Optional[Stdlib::HTTPUrl] $repo_baseurl,
+  Optional[Stdlib::HTTPUrl] $repo_gpgkey,
 ) {
   contain crowdsec::install
   contain crowdsec::config

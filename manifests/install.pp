@@ -5,6 +5,7 @@
 # @example
 #   include crowdsec::install
 class crowdsec::install (
+
 ) {
 # install package requirements
   if $crowdsec::manage_packages == true {
@@ -27,7 +28,7 @@ class crowdsec::install (
 
   archive { 'gpg-key':
     ensure  => present,
-    source  => 'https://packagecloud.io/crowdsec/crowdsec/gpgkey',
+    source  => $crowdsec::gpgkey,
     creates => '/tmp/RPM-GPG-KEY-CrowdSec',
   }
 
@@ -39,9 +40,9 @@ class crowdsec::install (
 
   yumrepo { 'crowdsec':
     enabled         => true,
-    baseurl         => "https://packagecloud.io/crowdsec/crowdsec/el/${facts.os.release.major}/$basearch",
+    baseurl         => $crowdsec::repo_baseurl,
     descr           => CrowdSec,
-    gpgkey          => 'https://packagecloud.io/crowdsec/crowdsec/gpgkey',
+    gpgkey          => $crowdsec::repo_gpgkey,
     gpgcheck        => 1,
     repo_gpgcheck   => 0,
     sslverify       => 1,
