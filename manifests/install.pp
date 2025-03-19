@@ -5,7 +5,6 @@
 # @example
 #   include crowdsec::install
 class crowdsec::install (
-
 ) {
 # install package requirements
   if $crowdsec::manage_packages == true {
@@ -35,7 +34,7 @@ class crowdsec::install (
   yum::gpgkey { '/etc/pki/rpm-gpg/RPM-GPG-KEY-CrowdSec':
     ensure  => present,
     source  => '/tmp/RPM-GPG-KEY-CrowdSec',
-    require => Archive['gpg-key']
+    require => Archive['gpg-key'],
   }
 
   yumrepo { 'crowdsec':
@@ -46,17 +45,13 @@ class crowdsec::install (
     gpgcheck        => 1,
     repo_gpgcheck   => 0,
     sslverify       => 1,
-    sslcacert       => /etc/pki/tls/certs/ca-bundle.crt,
+    sslcacert       => '/etc/pki/tls/certs/ca-bundle.crt',
     metadata_expire => 300,
-    }
+  }
 
-  # }
-  #}
   package { 'crowdsec':
     ensure          => $crowdsec::package_ensure,
     install_options => '--enablerepo=crowdsec',
     require         => Yum::Repo['crowdsec'],
   }
-  #  default: 'OS family not supported'
-  #  }
 }
