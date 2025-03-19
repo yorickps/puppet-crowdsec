@@ -1,3 +1,16 @@
 ---
 crowdsec::required_packages_manage: true
 crowdsec::required_packages_ensure: present
+
+crowdsec::db_config:
+  log_level: info
+  type: mysql
+  db_path: /var/lib/crowdsec/data/crowdsec.db
+  max_open_conns: 100
+  user: user 
+  password: totallyrandompwd
+  db_name: crowdsec
+  host: db_host
+  port: db_port
+
+crowdsec::repo_gpgkey:

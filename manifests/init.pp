@@ -2,11 +2,40 @@
 #
 # @summary This module manages CrowdSec
 #
-# @example
-#   include crowdsec
-class crowdsec(
+# @param installs
+#   
+# @param install_ensure
+#   Install ensure
+# @param package_ensure
+#   Whether or not to install main package
+# @param required_packages
+#   Required packages to install
+# @param manage_packages
+# @param required_packages_ensure
+# @param service_enable
+# @param service_ensure
+# @param service_manage
+# @param service_provider
+# @param service_hasstatus
+# @param service_hasrestart
+# @param repo_baseurl
+# @param repo_gpgkey
+class crowdsec (
   Array[String] $installs,
   $install_ensure,
+  String $package_ensure,
+  Boolean $manage_packages,
+  Array[String] $required_packages,
+  $required_packages_ensure,
+  Boolean $service_enable,
+  Enum['running', 'stopped'] $service_ensure,
+  Boolean $service_manage,
+  String $service_name,
+  Optional[String] $service_provider,
+  Boolean $service_hasstatus,
+  Boolean $service_hasrestart,
+  Optional[Stdlib::HTTPUrl] $repo_baseurl,
+  Optional[Stdlib::HTTPUrl] $repo_gpgkey,
 ) {
   contain crowdsec::install
   contain crowdsec::config

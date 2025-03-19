@@ -1,0 +1,2 @@
+---
+crowdsec::repo_baseurl: "https://packagecloud.io/crowdsec/crowdsec/el/${facts.os.release.major}/$basearch"
