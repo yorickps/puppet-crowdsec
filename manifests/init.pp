@@ -10,6 +10,16 @@
 #   Whether or not to install main package
 # @param required_packages
 #   Required packages to install
+# @param manage_packages
+# @param required_packages_ensure
+# @param service_enable
+# @param service_ensure
+# @param service_manage
+# @param service_provider
+# @param service_hasstatus
+# @param service_hasrestart
+# @param repo_baseurl
+# @param repo_gpgkey
 class crowdsec (
   Array[String] $installs,
   $install_ensure,
