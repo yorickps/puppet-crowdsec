@@ -1,5 +1,5 @@
 ---
-env:
+variables:
   PUPPET_GEM_VERSION: '~> 7.35.0'
   FACTER_GEM_VERSION: 'https://github.com/puppetlabs/facter#main'  # why is this set?
 
