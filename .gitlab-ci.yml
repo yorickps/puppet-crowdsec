@@ -13,7 +13,9 @@ before_script:
   #- gem update --system
   - gem --version
   - bundle -v
-  - bundle install --without system_tests --path vendor/bundle --jobs $(nproc)
+  - bundle config set path 'vendor/bundle'
+  - bundle config set without 'system_tests'
+  - bundle install --jobs $(nproc)
 
 syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop-Ruby 2.7.8-Puppet ~> 7.35:
   stage: syntax
